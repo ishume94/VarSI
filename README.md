@@ -4,6 +4,20 @@
 
 Scripts for reproducing the paper's main table and all-electron molecular results, comparing SI, VarSI-G/O/R/OR, and their ICS initializations.
 
+## Citation
+
+```bibtex
+@misc{huidobromeezs2026reducingquantummeasurementsqubitbased,
+  title={Reducing quantum measurements in qubit-based overlapping grouping methods for quantum energy estimation through better initializations},
+  author={Isaac L. Huidobro-Meezs and Rodrigo A. Vargas-Hernández},
+  year={2026},
+  eprint={2607.02794},
+  archivePrefix={arXiv},
+  primaryClass={quant-ph},
+  url={https://arxiv.org/abs/2607.02794},
+}
+```
+
 ## Installation
 
 First install [GFlow-VQE / GFlowNets-MOpt](https://github.com/ChemAI-Lab/GFlowNets-MOpt) and its dependencies in the same Python environment you will use for VarSI, following that library's installation instructions.
@@ -74,16 +88,4 @@ The all-electron runner additionally requires `--type`; use `standard` for the m
 
 Batch runners save CSVs and print results; loaded versions print results only. Use distinct output files when changing settings, since completed CSV entries are skipped. Check the recorded reference states and failed methods before comparing results. All inputs needed for these two workflows are included; no additional Hamiltonian dataset is required.
 
-## Citation
 
-```bibtex
-@misc{huidobromeezs2026reducingquantummeasurementsqubitbased,
-  title={Reducing quantum measurements in qubit-based overlapping grouping methods for quantum energy estimation through better initializations},
-  author={Isaac L. Huidobro-Meezs and Rodrigo A. Vargas-Hernández},
-  year={2026},
-  eprint={2607.02794},
-  archivePrefix={arXiv},
-  primaryClass={quant-ph},
-  url={https://arxiv.org/abs/2607.02794},
-}
-```
