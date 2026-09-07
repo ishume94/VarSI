@@ -22,6 +22,12 @@ Scripts for reproducing the paper's main table, frozen core and all-electron mol
 
 First install [GFlow-VQE / GFlowNets-MOpt](https://github.com/ChemAI-Lab/GFlowNets-MOpt) and its dependencies in the same Python environment you will use for VarSI, following that library's installation instructions.
 
+```bash
+git clone https://github.com/ChemAI-Lab/GFlowNets-MOpt.git
+cd GFlowNets-MOpt
+python -m pip install -e .
+```
+
 Run the commands below from the repository root, where `VarSI.py` and `hamiltonians_varsi.py` are located; keep both batch runners under `scripts/`. If copying the runners elsewhere, place both runners, `VarSI.py`, and `hamiltonians_varsi.py` in the same folder. `VarSI_loaded.py` also needs `VarSI.py` alongside it.
 
 ## Examples
@@ -87,5 +93,4 @@ Match the published rows by basis, molecule, geometry, mapping, charge, and `fro
 The all-electron runner additionally requires `--type`; use `standard` for the molecular results above. Each script's `--help` lists further options.
 
 Batch runners save CSVs and print results; loaded versions print results only. Use distinct output files when changing settings, since completed CSV entries are skipped. Check the recorded reference states and failed methods before comparing results. All inputs needed for these two workflows are included; no additional Hamiltonian dataset is required.
-
 
