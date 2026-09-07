@@ -2,7 +2,7 @@
 
 [![arXiv](https://img.shields.io/badge/arXiv-2607.02794-b31b1b.svg)](https://arxiv.org/abs/2607.02794)
 
-Scripts for reproducing the paper's main table and all-electron molecular results, comparing SI, VarSI-G/O/R/OR, and their ICS initializations.
+Scripts for reproducing the paper's main table, frozen core and all-electron molecular results, comparing SI, VarSI-G/O/R/OR, and their ICS initializations.
 
 ## Citation
 
