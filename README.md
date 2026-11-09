@@ -53,6 +53,12 @@ The fast version supports `H2`, `LiH`, `MgO`, `SiO`, `N2`, `H4`, `H6`, `BeH2`, `
 
 These GFlow-VQE Hamiltonians use 1 Å bond lengths (nearest-neighbor spacing for hydrogen chains), except `MgO` (1.75 Å), `SiO` (1.5 Å), and `H2Os` (O–H bonds of 1.5 Å). The paper runners define their own geometries; in particular, the paper's stretched H2O uses 2.2 Å.
 
+### External-library interface notebook
+
+[Example_Interface_external.ipynb](Example_Interface_external.ipynb) demonstrates how to connect the fast VarSI implementation to Hamiltonians generated with Tequila, PennyLane, and OpenFermion. Each section constructs frozen-core BH at 1.232 Å in STO-3G with the Jordan–Wigner mapping, builds the covariance dictionaries, and obtains both non-overlapping VarSI and overlapping ICS groupings.
+
+Exact covariances are used for grouping and reporting by default. To build the groupings with CISD covariances instead, uncomment the indicated `CISD` method line in the corresponding library section; reported results continue to use exact covariances. Run the notebook with the same Python environment used for VarSI, for example with `jupyter lab Example_Interface_external.ipynb`.
+
 ## Reproducing the main table
 
 Use [scripts/run_varsi_main.py](scripts/run_varsi_main.py) for the paper geometries, with CISD covariances, FCI reporting, STO-3G, and fully commuting groups:
@@ -72,7 +78,19 @@ Both JW and BK mappings run by default. For the 500-sweep results, change `--max
 python VarSI_loaded.py nh3 --tf both --wfn CISD --report-wfn FCI --max-sweeps 100
 ```
 
-Substitute `fast_VarSI_loaded.py` for the fast version. Repeat with `--max-sweeps 500` for the corresponding NH3 results. 
+Substitute `fast_VarSI_loaded.py` for the fast version. Repeat with `--max-sweeps 500` for the corresponding NH3 results.
+
+For a single fast workflow that uses the provided loaded fermionic Hamiltonians for every equilibrium main-table system, use [scripts/run_varsi_main_loaded_fast.py](scripts/run_varsi_main_loaded_fast.py). It loads LiH, BeH2, H2O, and NH3 from `ham_lib`, generates only the stretched BeH2 and H2O Hamiltonians, and records both the 100- and 500-sweep results:
+
+```bash
+python -u scripts/run_varsi_main_loaded_fast.py \
+    --prefix . \
+    --output-csv main_varsi_results/varsi_main_loaded_fast.csv \
+    --continue-on-error
+```
+
+The runner uses all available processors by default, constructs the groupings with CISD covariances, and evaluates the reported values with FCI covariances. Using the serialized equilibrium Hamiltonians avoids reproducibility issues from orbital-phase choices and small numerical discrepancies in regenerated Pauli coefficients. Although these changes leave the molecular energies unchanged within numerical precision, they can alter tie-sensitive grouping and refinement paths.
+
 ## Reproducing the all-electron and frozen-core results
 
 Use [scripts/run_varsi_all_electron.py](scripts/run_varsi_all_electron.py) to reproduce the molecular benchmark tables in the supplementary material. This runner calculates results for both all-electron and frozen-core Hamiltonians:
